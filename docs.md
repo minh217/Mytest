@@ -26,14 +26,12 @@
 
 Tạo các file cần lượt theo các thư mục dưới đây.
 
-[entity](#entity-httpstypeormioentities) -> [repositories] -> [services] -> [graphql]
+[entity](#entity-httpstypeormioentities) -> [repositories](#repositories) -> [services] -> [graphql]
 
 ### entity https://typeorm.io/entities
 Khởi tạo class entity để ánh xạ một class với một table trong database thông qua `typeORM`
 
-Thêm các decorator @Entity, @Column,... nhằm đánh dấu class, property giúp cho `typeORM` có thể hiểu được class này là một entity dùng để ánh xạ vào database
-
-vd: tạo class Car theo path src/db/entity/`car.entity.ts`
+-> Tạo class Car theo path src/db/entity/`car.entity.ts`
 
     import { Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
@@ -56,6 +54,8 @@ vd: tạo class Car theo path src/db/entity/`car.entity.ts`
         update_at: Date
     }
 
+* Thông tin: 
+Thêm các decorator @Entity, @Column,... nhằm đánh dấu class, property giúp cho `typeORM` có thể hiểu được class này là một entity dùng để ánh xạ vào database
 - Decorator
   - @Entity đánh dấu class để `typeORM` có thể hiểu và ánh xạ với một table ở database.
     - Một số option của decorator @Entity 
@@ -73,22 +73,12 @@ vd: tạo class Car theo path src/db/entity/`car.entity.ts`
 
 ### repositories
 Trong project hiện tại, chúng ta sử dụng Data Mapper pattern, ở đây mọi truy vấn và cập nhật dữ liệu điều thông qua repository.
-vd: Để tạo và lưu một đối tượng Car vào database
 
-    const carRepository = AppDataSource.getRepository(Car)
-    
-    const car = new Car()
-    car.name = "Wave"
-    car.color = "Red"
-    
-    await carRepository.save(user)
-    
-- AppDataSource là một class để ta connect đến database thông qua `typeORM`
-
-File repositories/`repo.abstract.ts` export một class RepoAbstract là một lớp trừu tượng class sẽ khởi tạo cũng như tạo sắn một một repository cho ta để connect đến database.
+File repositories/`repo.abstract.ts` export class RepoAbstract là một lớp trừu tượng, class sẽ khởi tạo một repository cho ta để connect đến database.
 
 Nên để có thể truy vấn hoặc cập nhật dữ liệu chỉ cần tạo một class repository kế thừa class RepoAbstract
-vd: tạo file repositories/`car.repository.ts`
+
+ -> Tạo file repositories/`car.repository.ts`
 
     import { CarEntity } from "src/db/entity/car.entity"
     import RepoAbstract from "./repo.abstract"
@@ -102,6 +92,8 @@ vd: tạo file repositories/`car.repository.ts`
     }
 
     export const CarRepository = _CarRepository;
+    
+
 
 
   
