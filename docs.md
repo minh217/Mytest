@@ -38,26 +38,44 @@ Khởi tạo class entity để ánh xạ một class với một table trong da
     
     @Entity({name: 'car', schema: 'product', synchronize: true})
     export class Car {
-        @PrimaryGeneratedColumn()
-        id: number
+            @PrimaryGeneratedColumn()
+            id: number
 
-        @Column( { type: 'text', nullable: false})
-        name: string
+            @Column( { type: 'text', nullable: false})
+            name: string
 
-        @Column( { nullable: true } )
-        color: string
+            @Column( { nullable: true } )
+            color: string
 
-        @Column({ type: 'decimal', nullable: true})
-        price: number
+            @Column({ type: 'decimal', nullable: true})
+            price: number
 
-        @Column()
-        origin: string
+            @Column({ nullable: true })
+            origin: string
 
-        @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-        create_at: Date
+            @Column({ type: 'int', default: -1 })
+            status: number;
 
-        @UpdateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-        update_at: Date
+            @Column({ type: 'boolean', default: false })
+            removed: boolean;
+
+            @Column({ type: 'uuid', nullable: true })
+            creator: string;
+
+            @Column({ type: 'uuid', nullable: true })
+            updater: string;
+
+            @Column({ type: 'uuid', nullable: true })
+            remover: string;
+
+            @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+            created_at: Date;
+
+            @UpdateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+            updated_at: Date;
+
+            @Column({ type: 'timestamptz', nullable: true })
+            removed_at: Date;
     }
 
 * Thông tin thêm: 
