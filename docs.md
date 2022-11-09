@@ -210,7 +210,7 @@ Các service là một lớp nằm giữa graphql (nhận yêu cầu truy vấn/
         export default {
             Query: {
                 get_cars: combineResolvers(
-                    AuthorizationUser,
+                    AuthenticationUser,
                     async () => {
                         return await CarService.getCars();
                     }
