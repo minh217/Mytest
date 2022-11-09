@@ -26,7 +26,7 @@
 
 Tạo các file cần lượt theo các thư mục dưới đây.
 
-[entity](#entity-httpstypeormioentities) -> [repositories](#repositories) -> [services](#services) -> [graphql]
+[entity](#entity-httpstypeormioentities) -> [repositories](#repositories) -> [services](#services) -> [graphql](#graphql)
 
 ### entity https://typeorm.io/entities
 Khởi tạo class entity để ánh xạ một class với một table trong database thông qua `typeORM`
